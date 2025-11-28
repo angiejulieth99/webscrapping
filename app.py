@@ -21,7 +21,7 @@ def ejecutar_flujo():
     time.sleep(3)
 
     driver.switch_to.frame("frame0")
-    print("✔ Entré a frame0")
+
 
     wait = WebDriverWait(driver, 20)
 
@@ -30,28 +30,27 @@ def ejecutar_flujo():
         EC.element_to_be_clickable((By.ID, "ctl00_CPH1_BtnTipoGobierno"))
     )
     boton_nivel.click()
-    print("✔ Clic en Nivel de Gobierno")
-    time.sleep(1)
+   
+
 
 
     radio = wait.until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, 'input[type="radio"][value^="E/"]'))
     )
     driver.execute_script("arguments[0].click();", radio)
-    print("✔ Clic en radio: Gobierno Nacional")
-    time.sleep(1)
+
 
 
     boton_sector = wait.until(
         EC.element_to_be_clickable((By.ID, "ctl00_CPH1_BtnSector"))
     )
     boton_sector.click()
-    print("✔ Clic en Sector")
+
 
     tabla = wait.until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "table.Data"))
     )
-    print("✔ Tabla correcta encontrada")
+   
 
 
     filas = tabla.find_elements(By.TAG_NAME, "tr")
@@ -91,10 +90,12 @@ def ejecutar_flujo():
     nombre_archivo = "Gobierno_Nacional.xlsx"
     wb.save(nombre_archivo)
 
-    print(f"✔ Excel generado correctamente: {nombre_archivo}")
+ 
 
-    time.sleep(5)
+
     driver.quit()
 
 if __name__ == "__main__":
     ejecutar_flujo()
+
+
